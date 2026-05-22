@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pending Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f1f5f9;
+padding:35px;
+color:#1e293b;
+}
+
+/* TOP */
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.title h1{
+font-size:38px;
+color:#fb8c00;
+margin-bottom:8px;
+}
+
+.title p{
+color:#64748b;
+}
+
+.back-btn{
+background:#111827;
+color:white;
+padding:14px 22px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-size:15px;
+font-weight:600;
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:translateY(-4px);
+}
+
+/* ALERT CARD */
+
+.alert-card{
+background:linear-gradient(135deg,#fff3e0,#ffffff);
+border-left:8px solid #fb8c00;
+padding:28px;
+border-radius:24px;
+margin-bottom:30px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.alert-left{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.alert-left i{
+font-size:42px;
+color:#fb8c00;
+}
+
+.alert-left h2{
+font-size:28px;
+margin-bottom:6px;
+}
+
+.alert-left p{
+color:#64748b;
+}
+
+/* TABLE */
+
+.table-box{
+background:white;
+border-radius:24px;
+overflow:auto;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:1000px;
+}
+
+thead{
+background:#fb8c00;
+color:white;
+}
+
+th{
+padding:18px;
+text-align:left;
+font-size:15px;
+font-weight:600;
+}
+
+td{
+padding:18px;
+border-bottom:1px solid #f1f5f9;
+font-size:15px;
+}
+
+tbody tr{
+transition:0.2s;
+}
+
+tbody tr:hover{
+background:#f8fafc;
+}
+
+/* BADGES */
+
+.badge{
+padding:8px 14px;
+border-radius:999px;
+font-size:13px;
+font-weight:600;
+display:inline-block;
+}
+
+.available{
+background:#e8f5e9;
+color:#2e7d32;
+}
+
+.low{
+background:#ffebee;
+color:#d32f2f;
+}
+
+.priority{
+background:#fff3e0;
+color:#ef6c00;
+}
+
+/* ISSUE BUTTON */
+
+.issue-btn{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:#2e7d32;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.issue-btn:hover{
+background:#1b5e20;
+transform:translateY(-3px);
+}
+
+.no-stock{
+color:#d32f2f;
+font-weight:600;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+body{
+padding:20px;
+}
+
+.title h1{
+font-size:28px;
+}
+
+.alert-left h2{
+font-size:22px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+
+<div class="top">
+
+<div class="title">
+<h1>Pending Requests</h1>
+<p>Manage pending blood requests and stock availability.</p>
+</div>
+
+<button class="back-btn"
+onclick="window.location.href='analytics.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+Back Dashboard
+
+</button>
+
+</div>
+
+<!-- ALERT -->
+
+<div class="alert-card">
+
+<div class="alert-left">
+
+<i class="fa-solid fa-clock"></i>
+
+<div>
+<h2>Pending Blood Requests</h2>
+<p>
+Monitor emergency and waiting requests in real-time.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Request ID</th>
+<th>Patient</th>
+<th>Blood Group</th>
+<th>Units Needed</th>
+<th>Priority</th>
+<th>Stock Status</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="tbody"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+async function loadPending(){
+
+const res =
+await fetch(
+"http://localhost:3000/api/pending-dashboard"
+);
+
+const data = await res.json();
+
+let rows = "";
+
+data.list.forEach(item=>{
+
+rows += `
+<tr>
+
+<td>
+<strong>#${item.request_id}</strong>
+</td>
+
+<td>${item.patient_name}</td>
+
+<td>
+<span class="badge priority">
+${item.group_name}
+</span>
+</td>
+
+<td>${item.units_needed}</td>
+
+<td>
+<span class="badge priority">
+${item.priority}
+</span>
+</td>
+
+<td>
+
+<span class="badge
+${item.stock_status === 'Low'
+? 'low'
+: 'available'}">
+
+${item.stock_status}
+
+</span>
+
+</td>
+
+<td>
+
+${item.stock_status === 'Available'
+
+? `
+
+<button class="issue-btn"
+onclick="issueBlood(
+${item.request_id},
+'${item.group_name}'
+)">
+
+<i class="fa-solid fa-droplet"></i>
+Issue Blood
+
+</button>
+
+`
+
+: `
+
+<span class="no-stock">
+No Stock
+</span>
+
+`
+
+}
+
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("tbody").innerHTML = rows;
+
+}
+
+async function issueBlood(id, group){
+
+let bgid = 1;
+
+if(group==="A+") bgid=1;
+if(group==="A-") bgid=2;
+if(group==="B+") bgid=3;
+if(group==="B-") bgid=4;
+if(group==="AB+") bgid=5;
+if(group==="AB-") bgid=6;
+if(group==="O+") bgid=7;
+if(group==="O-") bgid=8;
+
+const res =
+await fetch(
+"http://localhost:3000/api/issue",
+{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+request_id:id,
+bg_id:bgid
+})
+});
+
+const result = await res.json();
+
+alert(result.message);
+
+loadPending();
+
+}
+
+loadPending();
+
+</script>
+
+</body>
+</html>

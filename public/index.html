@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Blood Bank Management System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    background:
+    linear-gradient(135deg,#ffebee,#f5f7fa);
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:28px;
+    font-weight:700;
+    color:#c62828;
+}
+
+.logo i{
+    font-size:32px;
+}
+
+/* HERO */
+
+.hero{
+    padding:60px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+    flex-wrap:wrap;
+}
+
+.hero-left{
+    flex:1;
+    min-width:300px;
+}
+
+.hero-left h1{
+    font-size:64px;
+    line-height:1.1;
+    color:#1e293b;
+    margin-bottom:25px;
+}
+
+.hero-left h1 span{
+    color:#c62828;
+}
+
+.hero-left p{
+    font-size:18px;
+    color:#64748b;
+    margin-bottom:35px;
+    max-width:600px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 28px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.primary{
+    background:#c62828;
+    color:white;
+    box-shadow:0 10px 25px rgba(198,40,40,0.3);
+}
+
+.primary:hover{
+    transform:translateY(-5px);
+    background:#b71c1c;
+}
+
+.secondary{
+    background:white;
+    color:#1e293b;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.secondary:hover{
+    transform:translateY(-5px);
+}
+
+/* HERO RIGHT */
+
+.hero-right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    min-width:300px;
+}
+
+.glass-card{
+    width:420px;
+    padding:40px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(18px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.08);
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.stat-box{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-6px);
+}
+
+.stat-box i{
+    font-size:32px;
+    margin-bottom:15px;
+    color:#c62828;
+}
+
+.stat-box h2{
+    font-size:32px;
+    color:#1e293b;
+}
+
+.stat-box p{
+    color:#64748b;
+    margin-top:8px;
+}
+
+/* FEATURES */
+
+.features{
+    padding:40px 8% 80px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:42px;
+    color:#1e293b;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:white;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:0.3s;
+    text-decoration:none;
+    color:#1e293b;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card i{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.red{
+    color:#c62828;
+}
+
+.blue{
+    color:#1565c0;
+}
+
+.green{
+    color:#2e7d32;
+}
+
+.card h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#64748b;
+    line-height:1.7;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero-left h1{
+    font-size:48px;
+}
+
+.hero{
+    text-align:center;
+}
+
+.hero-buttons{
+    justify-content:center;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero-left h1{
+    font-size:38px;
+}
+
+.glass-card{
+    width:100%;
+}
+
+.stats{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-heart-circle-plus"></i>
+<span>BloodCare</span>
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>
+Saving Lives With
+<span>Smart Blood Management</span>
+</h1>
+
+<p>
+Modern Blood Bank Management System for hospitals,
+donors, emergency blood requests, analytics and inventory tracking.
+Built for faster response and better healthcare management.
+</p>
+
+<div class="hero-buttons">
+
+<a href="donor.html" class="btn primary">
+<i class="fa-solid fa-hand-holding-droplet"></i>
+Donate Blood
+</a>
+
+<a href="analytics.html" class="btn secondary">
+<i class="fa-solid fa-chart-line"></i>
+Open Dashboard
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="glass-card">
+
+<div class="stats">
+
+<div class="stat-box">
+<i class="fa-solid fa-users"></i>
+<h2>500+</h2>
+<p>Active Donors</p>
+</div>
+
+<div class="stat-box">
+<i class="fa-solid fa-droplet"></i>
+<h2>1200+</h2>
+<p>Blood Units</p>
+</div>
+
+<div class="stat-box">
+<i class="fa-solid fa-hospital"></i>
+<h2>50+</h2>
+<p>Hospitals</p>
+</div>
+
+<div class="stat-box">
+<i class="fa-solid fa-heart-pulse"></i>
+<h2>24/7</h2>
+<p>Emergency Support</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features">
+
+<div class="section-title">
+<h2>System Modules</h2>
+</div>
+
+<div class="cards">
+
+<a href="donor.html" class="card">
+<i class="fa-solid fa-user-plus red"></i>
+<h3>Donor Registration</h3>
+<p>
+Register blood donors with complete profile management
+and blood group tracking.
+</p>
+</a>
+
+<a href="request.html" class="card">
+<i class="fa-solid fa-notes-medical blue"></i>
+<h3>Blood Requests</h3>
+<p>
+Handle emergency and normal blood requests
+efficiently with real-time updates.
+</p>
+</a>
+
+<a href="analytics.html" class="card">
+<i class="fa-solid fa-chart-pie green"></i>
+<h3>Analytics Dashboard</h3>
+<p>
+Monitor stock, donors, pending requests,
+availability and blood issue reports.
+</p>
+</a>
+
+</div>
+
+</section>
+
+</body>
+</html>

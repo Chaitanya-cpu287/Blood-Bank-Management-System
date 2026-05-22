@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blood Request Portal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+background:
+linear-gradient(135deg,#e3f2fd,#f8fafc);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 20px;
+}
+
+/* CONTAINER */
+
+.container{
+width:100%;
+max-width:900px;
+background:rgba(255,255,255,0.72);
+backdrop-filter:blur(18px);
+padding:40px;
+border-radius:32px;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
+}
+
+/* TOP */
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.title h1{
+font-size:38px;
+color:#1565c0;
+margin-bottom:10px;
+}
+
+.title p{
+color:#64748b;
+line-height:1.7;
+}
+
+.home-btn{
+padding:14px 22px;
+border:none;
+border-radius:14px;
+background:#111827;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.home-btn:hover{
+transform:translateY(-4px);
+}
+
+/* ALERT */
+
+.alert{
+background:linear-gradient(135deg,#fff3e0,#ffffff);
+border-left:8px solid #ef6c00;
+padding:22px;
+border-radius:20px;
+display:flex;
+gap:15px;
+align-items:flex-start;
+margin-bottom:30px;
+}
+
+.alert i{
+font-size:30px;
+color:#ef6c00;
+margin-top:2px;
+}
+
+.alert h3{
+margin-bottom:8px;
+color:#1e293b;
+}
+
+.alert p{
+color:#64748b;
+line-height:1.7;
+}
+
+/* FORM */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+}
+
+.input-box{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.input-box label{
+font-size:14px;
+font-weight:600;
+color:#334155;
+}
+
+.input-box input,
+.input-box select{
+padding:16px;
+border:1px solid #dbeafe;
+border-radius:16px;
+font-size:15px;
+outline:none;
+transition:0.3s;
+background:white;
+}
+
+.input-box input:focus,
+.input-box select:focus{
+border-color:#1565c0;
+box-shadow:0 0 0 4px rgba(21,101,192,0.1);
+}
+
+.full{
+grid-column:1/3;
+}
+
+/* BUTTON */
+
+.submit-btn{
+margin-top:30px;
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#1565c0,#0d47a1);
+color:white;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+box-shadow:0 10px 25px rgba(21,101,192,0.3);
+}
+
+.submit-btn:hover{
+transform:translateY(-5px);
+}
+
+/* PRIORITY COLORS */
+
+.priority-note{
+margin-top:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.note-card{
+padding:18px;
+border-radius:18px;
+background:white;
+box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+
+.note-card h4{
+margin-bottom:10px;
+}
+
+.red{
+color:#d32f2f;
+}
+
+.orange{
+color:#ef6c00;
+}
+
+.blue{
+color:#1565c0;
+}
+
+.note-card p{
+color:#64748b;
+line-height:1.6;
+font-size:14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.container{
+padding:30px 20px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:auto;
+}
+
+.title h1{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- TOP -->
+
+<div class="top">
+
+<div class="title">
+
+<h1>Blood Request Portal</h1>
+
+<p>
+Submit emergency and regular blood requests
+with real-time hospital management support.
+</p>
+
+</div>
+
+<button class="home-btn"
+onclick="window.location.href='index.html'">
+
+<i class="fa-solid fa-house"></i>
+Home
+
+</button>
+
+</div>
+
+<!-- ALERT -->
+
+<div class="alert">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+<div>
+
+<h3>Emergency Blood Support</h3>
+
+<p>
+For emergency cases, select Emergency priority
+to help hospitals process requests faster.
+</p>
+
+</div>
+
+</div>
+
+<!-- FORM -->
+
+<form id="requestForm">
+
+<div class="form-grid">
+
+<div class="input-box">
+
+<label>Patient Name</label>
+
+<input type="text"
+id="patient_name"
+placeholder="Enter patient name"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Phone Number</label>
+
+<input type="text"
+id="phone"
+placeholder="Enter contact number"
+required>
+
+</div>
+
+<div class="input-box full">
+
+<label>Hospital Name</label>
+
+<input type="text"
+id="hospital_name"
+placeholder="Enter hospital name"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Blood Group</label>
+
+<select id="bg_id" required>
+
+<option value="">Select Blood Group</option>
+<option value="1">A+</option>
+<option value="2">A-</option>
+<option value="3">B+</option>
+<option value="4">B-</option>
+<option value="5">AB+</option>
+<option value="6">AB-</option>
+<option value="7">O+</option>
+<option value="8">O-</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Units Needed</label>
+
+<input type="number"
+id="units_needed"
+placeholder="Enter required units"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Priority Level</label>
+
+<select id="priority" required>
+
+<option value="Normal">Normal</option>
+<option value="Emergency">Emergency</option>
+<option value="Low">Low</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Request Date</label>
+
+<input type="date"
+id="request_date"
+required>
+
+</div>
+
+</div>
+
+<button type="submit" class="submit-btn">
+
+<i class="fa-solid fa-paper-plane"></i>
+Submit Blood Request
+
+</button>
+
+</form>
+
+<!-- PRIORITY INFO -->
+
+<div class="priority-note">
+
+<div class="note-card">
+<h4 class="red">Emergency</h4>
+<p>
+Critical life-saving requests requiring immediate action.
+</p>
+</div>
+
+<div class="note-card">
+<h4 class="orange">Normal</h4>
+<p>
+Standard hospital blood requirements with regular processing.
+</p>
+</div>
+
+<div class="note-card">
+<h4 class="blue">Low Priority</h4>
+<p>
+Non-urgent requests with flexible processing timelines.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("requestForm").onsubmit =
+async function(e){
+
+e.preventDefault();
+
+const data = {
+
+patient_name:
+document.getElementById("patient_name").value,
+
+phone:
+document.getElementById("phone").value,
+
+hospital_name:
+document.getElementById("hospital_name").value,
+
+bg_id:
+document.getElementById("bg_id").value,
+
+units_needed:
+document.getElementById("units_needed").value,
+
+priority:
+document.getElementById("priority").value,
+
+request_date:
+document.getElementById("request_date").value
+
+};
+
+const res =
+await fetch("http://localhost:3000/api/requests",{
+
+method:"POST",
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify(data)
+
+});
+
+const result = await res.json();
+
+alert(result.message);
+
+document.getElementById("requestForm").reset();
+
+}
+
+</script>
+
+</body>
+</html>

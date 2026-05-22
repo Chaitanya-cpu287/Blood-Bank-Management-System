@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Issue Blood Unit</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+background:
+linear-gradient(135deg,#e8f5e9,#f8fafc);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 20px;
+}
+
+/* CONTAINER */
+
+.container{
+width:100%;
+max-width:700px;
+background:rgba(255,255,255,0.72);
+backdrop-filter:blur(18px);
+padding:40px;
+border-radius:32px;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
+}
+
+/* TOP */
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.title h1{
+font-size:38px;
+color:#2e7d32;
+margin-bottom:10px;
+}
+
+.title p{
+color:#64748b;
+line-height:1.7;
+}
+
+.home-btn{
+padding:14px 22px;
+border:none;
+border-radius:14px;
+background:#111827;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.home-btn:hover{
+transform:translateY(-4px);
+}
+
+/* INFO CARD */
+
+.info{
+background:linear-gradient(135deg,#e8f5e9,#ffffff);
+border-left:8px solid #2e7d32;
+padding:22px;
+border-radius:20px;
+display:flex;
+gap:15px;
+align-items:flex-start;
+margin-bottom:30px;
+}
+
+.info i{
+font-size:30px;
+color:#2e7d32;
+margin-top:2px;
+}
+
+.info h3{
+margin-bottom:8px;
+color:#1e293b;
+}
+
+.info p{
+color:#64748b;
+line-height:1.7;
+}
+
+/* FORM */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+}
+
+.input-box{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.input-box label{
+font-size:14px;
+font-weight:600;
+color:#334155;
+}
+
+.input-box input{
+padding:16px;
+border:1px solid #d1fae5;
+border-radius:16px;
+font-size:15px;
+outline:none;
+transition:0.3s;
+background:white;
+}
+
+.input-box input:focus{
+border-color:#2e7d32;
+box-shadow:0 0 0 4px rgba(46,125,50,0.1);
+}
+
+.full{
+grid-column:1/3;
+}
+
+/* BUTTON */
+
+.submit-btn{
+margin-top:30px;
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#2e7d32,#1b5e20);
+color:white;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+box-shadow:0 10px 25px rgba(46,125,50,0.3);
+}
+
+.submit-btn:hover{
+transform:translateY(-5px);
+}
+
+/* STEPS */
+
+.steps{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+.step{
+background:white;
+padding:18px;
+border-radius:18px;
+box-shadow:0 6px 20px rgba(0,0,0,0.05);
+text-align:center;
+}
+
+.step i{
+font-size:28px;
+color:#2e7d32;
+margin-bottom:12px;
+}
+
+.step h4{
+margin-bottom:8px;
+color:#1e293b;
+}
+
+.step p{
+color:#64748b;
+font-size:14px;
+line-height:1.6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.container{
+padding:30px 20px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:auto;
+}
+
+.title h1{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- TOP -->
+
+<div class="top">
+
+<div class="title">
+
+<h1>Issue Blood Unit</h1>
+
+<p>
+Process blood issue requests securely and update
+hospital inventory in real-time.
+</p>
+
+</div>
+
+<button class="home-btn"
+onclick="window.location.href='index.html'">
+
+<i class="fa-solid fa-house"></i>
+Home
+
+</button>
+
+</div>
+
+<!-- INFO -->
+
+<div class="info">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<div>
+
+<h3>Blood Issue Processing</h3>
+
+<p>
+Verify request ID and available blood unit ID before
+issuing blood to maintain accurate inventory records.
+</p>
+
+</div>
+
+</div>
+
+<!-- FORM -->
+
+<form id="issueForm">
+
+<div class="form-grid">
+
+<div class="input-box">
+
+<label>Request ID</label>
+
+<input type="number"
+id="req_id"
+placeholder="Enter request ID"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Blood Unit ID</label>
+
+<input type="number"
+id="unit_id"
+placeholder="Enter unit ID"
+required>
+
+</div>
+
+<div class="input-box full">
+
+<label>Issue Date</label>
+
+<input type="date"
+id="i_date"
+required>
+
+</div>
+
+</div>
+
+<button type="submit" class="submit-btn">
+
+<i class="fa-solid fa-droplet"></i>
+Complete Blood Issue
+
+</button>
+
+</form>
+
+<!-- STEPS -->
+
+<div class="steps">
+
+<div class="step">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<h4>Verify Request</h4>
+
+<p>
+Confirm patient blood request details before processing.
+</p>
+
+</div>
+
+<div class="step">
+
+<i class="fa-solid fa-box-open"></i>
+
+<h4>Check Inventory</h4>
+
+<p>
+Ensure the selected blood unit is available and valid.
+</p>
+
+</div>
+
+<div class="step">
+
+<i class="fa-solid fa-hand-holding-medical"></i>
+
+<h4>Issue Blood</h4>
+
+<p>
+Complete issue process and update blood inventory records.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById('issueForm').onsubmit =
+async (e) => {
+
+e.preventDefault();
+
+const data = {
+
+request_id:
+document.getElementById('req_id').value,
+
+unit_id:
+document.getElementById('unit_id').value,
+
+issue_date:
+document.getElementById('i_date').value
+
+};
+
+const res =
+await fetch(
+'http://localhost:3000/api/issue-blood',
+{
+method:'POST',
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify(data)
+
+});
+
+const result = await res.json();
+
+alert(result.message || result.error);
+
+if(res.ok){
+
+window.location.href = 'analytics.html';
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
